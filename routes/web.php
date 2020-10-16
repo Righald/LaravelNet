@@ -17,7 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test/{id}', function ($id) {
-    return view('test', compact('id'));
-});
-
+Route::get('contact', 'webController@contact')->name('contact');
