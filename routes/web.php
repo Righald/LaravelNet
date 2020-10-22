@@ -18,3 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('contact', 'webController@contact')->name('contact');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
