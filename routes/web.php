@@ -24,5 +24,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth'])->group(function(){
-	Route::get('/movies', 'MovieController@index');
+	Route::get('/movies', 'MovieController@index')->name('movies');
+	
+	Route::get('/categories', 'CategoryController@index')->name('categories');
+	Route::post('/categories', 'CategoryController@store');
+	Route::put('/categories', 'CategoryController@update');
+	Route::delete('/categories', 'CategoryController@destroy');
 });

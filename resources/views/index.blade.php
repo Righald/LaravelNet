@@ -26,7 +26,7 @@
 					      	<th scope="row">{{ $movie->id }}</th>
 					      	<td>{{ $movie->title }}</td>
 					      	<td>{{ $movie->clasification }}</td>
-					      	<td>{{ $movie->category_id }}</td>
+					      	<td>{{ $movie->category->name }}</td>
 				    	</tr>
 				    	@endforeach
 				    	@endif

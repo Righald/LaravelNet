@@ -14,6 +14,12 @@ class Category extends Model
     *
     * @var array
     */
+
+    public function movie()
+    {
+        return $this->hasMany(Movie::class);
+    }
+
     protected $fillable = [
         'name',
         'description',

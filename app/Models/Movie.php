@@ -14,6 +14,13 @@ class Movie extends Model
     *
     * @var array
     */
+
+    public function category()
+    {
+        #return $this->belongsTo('App\Models\Category', 'category_id');
+        return $this->belongsTo(Category::class);
+    }
+
     protected $fillable = [
         'name',
         'description',
