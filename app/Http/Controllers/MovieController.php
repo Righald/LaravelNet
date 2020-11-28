@@ -73,9 +73,21 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Movie $movie)
+    public function get(Movie $movie)
     {
-        //
+        if($movie) {
+            return response()->json([
+                'message' => 'Consulta exitosa',
+                'code' => '200',
+                'data' => $movie
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'No se pudo eliminar el registro',
+            'code' => '400',
+            'data' => array()
+        ]);
     }
 
     /**
