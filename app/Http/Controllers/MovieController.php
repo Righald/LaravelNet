@@ -97,9 +97,19 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request)
     {
-        //
+        $movie = Movie::find($request->id);
+
+        if($movie)
+        {
+            if($movie->update($request->all()))
+            {
+                return redirect()->back();
+            }
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -108,8 +118,22 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Request $request)
     {
         //
+        $movie = Movie::find($request->id);
+
+        if ($movie) {
+           if ($movie->delete()) {
+               return response()->json([
+                    'message' => 'Registro eliminado correctamente',
+                    'code' => '200',
+                ]);
+           }
+        }
+        return response()->json([
+            'message' => 'No se pudo eliminar el registro',
+            'code' => '400',
+        ]);
     }
 }

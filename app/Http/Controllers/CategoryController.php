@@ -94,7 +94,7 @@ class CategoryController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
+        dd($request);
         $category = Category::find($request['id']);
 
         if ($category) {
@@ -109,4 +109,5 @@ class CategoryController extends Controller
             'message' => 'No se pudo eliminar el registro',
             'code' => '400',
         ]);
+    }
 }

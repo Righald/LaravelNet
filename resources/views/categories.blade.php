@@ -190,42 +190,39 @@
 			$("#description").val(description)
 			$("#id").val(id)
      	}
-     	function remove(id,target){
-     		swal({
-			  title: "Are you sure?",
-			  text: "Once deleted, you will not be able to recover this record!",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-			  if (willDelete) {
-			  	axios({
-				  method: 'delete',
-				  url: '{{ url('categories') }}',
-				  data: {
-				    id: id,
-				    _token: '{{ csrf_token() }}'
-				  }
-				}).then(function (response) { 
-				    if(response.data.code==200){
-				    	swal("Poof! Your record has been deleted!", {
-					      icon: "success",
-					    });
-				    	$(target).parent().parent().parent().parent().parent().remove();
-				    }else{
-				    	swal("Error ocurred", {
-					      icon: "error",
-					    });
-				    }
-				});
-			    
-			  } else {
-			    swal("Your record is safe!");
-			  }
-			});
-     		console.log(id)
-     	}
+		function remove(id,target){
+	        swal({
+	            title: "Are you sure?",
+	            text: "Once deleted, you will not be able to recover this category",
+	            icon: "warning",
+	            buttons: true,
+	            dangerMode: true,
+	          })
+	          .then((willDelete) => {
+	            if (willDelete) { 
+	              axios.delete('{{ url('categories') }}', {
+	                id: id,
+	                _token: '{{ csrf_token() }}'
+	              })
+	              .then(function (response) { 
+	                if (response.data.code==200) {
+	                  swal( response.data.message , {
+	                    icon: "success",
+	                  });
+	                  $(target).parent().parent().remove();
+	                }else{
+	                  swal( response.data.message , {
+	                    icon: "error",
+	                  });
+	                }
+	              })
+	              .catch(function (error) { 
+	                swal('Error ocurred',{ icon:'error' });
+	              });
+	              
+	            }
+	          });
+		}
      </script>
     </x-slot>
 </x-app-layout>
