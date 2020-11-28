@@ -190,38 +190,46 @@
 			$("#description").val(description)
 			$("#id").val(id)
      	}
-		function remove(id,target){
-	        swal({
+		function remove(id,target)
+		{
+	        swal
+	        ({
 	            title: "Are you sure?",
 	            text: "Once deleted, you will not be able to recover this category",
 	            icon: "warning",
 	            buttons: true,
 	            dangerMode: true,
-	          })
-	          .then((willDelete) => {
-	            if (willDelete) { 
-	              axios.delete('{{ url('categories') }}', {
-	                id: id,
+	        })
+	        .then((willDelete) => {
+	            if (willDelete) 
+	            { 
+	              axios.delete('{{ url('categories') }}/'+id, {
 	                _token: '{{ csrf_token() }}'
 	              })
-	              .then(function (response) { 
-	                if (response.data.code==200) {
-	                  swal( response.data.message , {
+	              .then(function (response) 
+	              { 
+	              	console.log(response);
+	                if (response.status==200) 
+	                {
+	                  swal( response.statusText , {
 	                    icon: "success",
 	                  });
 	                  $(target).parent().parent().remove();
-	                }else{
-	                  swal( response.data.message , {
+	                }
+	                else
+	                {
+	                  swal( response.statusText , {
 	                    icon: "error",
 	                  });
 	                }
 	              })
-	              .catch(function (error) { 
+	              .catch(function (error) 
+	              { 
 	                swal('Error ocurred',{ icon:'error' });
 	              });
 	              
 	            }
-	          });
+	        });
 		}
      </script>
     </x-slot>

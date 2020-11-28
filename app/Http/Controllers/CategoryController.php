@@ -92,11 +92,8 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Category $category)
     {
-        dd($request);
-        $category = Category::find($request['id']);
-
         if ($category) {
            if ($category->delete()) {
                return response()->json([
@@ -105,6 +102,7 @@ class CategoryController extends Controller
                 ]);
            }
         }
+
         return response()->json([
             'message' => 'No se pudo eliminar el registro',
             'code' => '400',
