@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/movies-info/{movie}', 'MovieController@get');
 	Route::post('/movies', 'MovieController@store');
 	Route::put('/movies', 'MovieController@update');
-	Route::delete('/movies', 'MovieController@destroy');
+	Route::delete('/movies/{movie}', 'MovieController@destroy');
 
 	Route::get('/categories', 'CategoryController@index')->name('categories');
 	Route::post('/categories', 'CategoryController@store');
