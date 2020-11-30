@@ -40,4 +40,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/loan-info/{loan}', 'LoanController@get')->name('loan-info');
 	Route::post('/loans', 'LoanController@store');
 	Route::put('/loans', 'LoanController@update');
+
+	Route::get('return/{id}', 'LoanController@return');
+	Route::get('myLoans', 'LoanController@myloans');
 });

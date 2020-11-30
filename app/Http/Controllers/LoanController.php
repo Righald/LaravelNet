@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
@@ -15,8 +17,9 @@ class LoanController extends Controller
     public function index()
     {
         $loans = Loan::all();
-        
-        return view('loans.index', compact('loans'));
+        $movies = Movie::all();
+
+        return view('loans.index', compact('loans', 'movies'));
     }
 
     /**
@@ -24,9 +27,12 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function myloans()
     {
-        //
+        $id = Auth::id(); 
+        $myloans = Loan::find($id);
+
+        return view('loans.myloans', compact('myloans'))
     }
 
     /**
@@ -48,9 +54,15 @@ class LoanController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function show(Movie $movie)
+    public function return($id)
     {
-        //
+        $loan = Loan::find($id);
+
+        $loan->status = 'inactive';
+
+        $loan->save();
+
+        return redirect()->back();
     }
 
     /**

@@ -17,12 +17,12 @@ class Loan extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 
     public function movie()
     {
-        return $this->belongsTo(Movie::class);
+        return $this->hasOne(Movie::class);
     }
 
     protected $fillable = [
