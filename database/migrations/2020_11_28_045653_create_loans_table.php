@@ -18,7 +18,6 @@ class CreateLoansTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('movie_id');
             $table->string('status')->default('active');
-            $table->date('return');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

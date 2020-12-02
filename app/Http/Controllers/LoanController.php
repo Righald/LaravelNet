@@ -32,7 +32,7 @@ class LoanController extends Controller
         $id = Auth::id(); 
         $myloans = Loan::find($id);
 
-        return view('loans.myloans', compact('myloans'))
+        return view('loans.myloans', compact('myloans'));
     }
 
     /**
