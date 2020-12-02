@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -26,9 +27,14 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function dashboard()
     {
-        //
+        $categories = Category::all();
+        $movies = Movie::with('category')->get();
+        $users = User::all();
+
+
+        return view('dashboard', compact('categories', 'movies', 'users'));
     }
 
     /**
