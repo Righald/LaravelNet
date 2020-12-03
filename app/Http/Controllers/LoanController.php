@@ -19,7 +19,12 @@ class LoanController extends Controller
         $loans = Loan::all();
         $movies = Movie::all();
 
-        return view('loans.index', compact('loans', 'movies'));
+        if(Auth::user()->role == 'admin')
+        {
+            return view('loans.index', compact('loans', 'movies'));
+        }
+        else
+            return redirect('/myLoans');        
     }
 
     /**

@@ -39,6 +39,6 @@ Route::middleware(['auth'])->group(function(){
 	Route::post('/loans', 'LoanController@store');
 	Route::put('/loans', 'LoanController@update');
 
-	Route::get('return/{id}', 'LoanController@return');
-	Route::get('myLoans', 'LoanController@myloans');
+	Route::get('/return/{id}', 'LoanController@return');
+	Route::get('/myLoans', 'LoanController@myloans');
 });
