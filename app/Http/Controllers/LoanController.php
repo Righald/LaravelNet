@@ -35,7 +35,7 @@ class LoanController extends Controller
     public function myloans()
     {
         $id = Auth::id(); 
-        $myloans = Loan::find($id);
+        $myloans = Loan::where('user_id','=',$id)->get();
 
         return view('loans.myloans', compact('myloans'));
     }
