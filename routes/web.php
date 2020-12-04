@@ -29,11 +29,6 @@ Route::middleware(['auth'])->group(function(){
 	Route::put('/movies', 'MovieController@update');
 	Route::delete('/movies/{movie}', 'MovieController@destroy');
 
-	Route::get('/categories', 'CategoryController@index')->name('categories');
-	Route::post('/categories', 'CategoryController@store');
-	Route::put('/categories', 'CategoryController@update');
-	Route::delete('/categories/{category}', 'CategoryController@destroy');
-
 	Route::get('/loans', 'LoanController@index')->name('loans');
 	Route::get('/loan-info/{loan}', 'LoanController@get')->name('loan-info');
 	Route::post('/loans', 'LoanController@store');
@@ -41,4 +36,13 @@ Route::middleware(['auth'])->group(function(){
 
 	Route::get('/return/{id}', 'LoanController@return');
 	Route::get('/myLoans', 'LoanController@myloans');
+});
+
+Route::middleware(['roles'])->group(function(){
+
+	Route::get('/categories', 'CategoryController@index')->name('categories');
+	Route::post('/categories', 'CategoryController@store');
+	Route::put('/categories', 'CategoryController@update');
+	Route::delete('/categories/{category}', 'CategoryController@destroy');
+
 });
