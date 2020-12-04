@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Loan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MovieController extends Controller
 {
@@ -18,8 +20,15 @@ class MovieController extends Controller
     {
         $movies = Movie::with('category')->get();
         $categories = Category::all();
-        
-        return view('index', compact('movies', 'categories'));
+        $id = Auth::id(); 
+        $myloans = Loan::where('user_id','=',$id)->get();
+        if(Auth::user()->role == 'admin')
+        {
+            return view('movies.index', compact('movies', 'categories'));
+        }
+        else{
+            return view('movies.clientMovies', compact('movies', 'categories','myloans'));
+        }
     }
 
     /**
@@ -32,9 +41,10 @@ class MovieController extends Controller
         $categories = Category::all();
         $movies = Movie::with('category')->get();
         $users = User::all();
+        $loans = Loan::all();
 
 
-        return view('dashboard', compact('categories', 'movies', 'users'));
+        return view('dashboard', compact('categories', 'movies', 'users','loans'));
     }
 
     /**

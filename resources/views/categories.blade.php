@@ -8,7 +8,7 @@
 			</div>
 			<div class="col-4">
 				<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addCategory">
-		        	Add category
+		        	<label class="d-none d-sm-inline">Add category </label> +
 		        </button>
 			</div>
 		</div>  
@@ -16,54 +16,54 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                
-            	<table class="table table-striped table-bordered">
-				  <thead class="thead-dark ">
-				    <tr>
-				      <th scope="col">#</th>
-				      <th scope="col">Name</th>
-				      <th scope="col">Description</th>
-				      <th scope="col">Created</th>
-				      <th scope="col">Movies</th>
-				      <th scope="col">Actions</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  	@if (isset($categories) && count($categories)>0)
-				  	@foreach ($categories as $category)
-				  	<tr>
-				      <th scope="row">
-				      	{{ $category->id }}
-				      </th>
-				      <td> {{ $category->name }} </td>
-				      <td> {{ $category->description }} </td>
-				      <td> {{ $category->created_at }} </td>
-				      <td> {{ count($category->movie) }} </td>
-				      <td>
-				      	<div class="btn-group" role="group" aria-label="Button group with nested dropdown"> 
+            <div class="bg-white shadow-xl">
+                <div class="table-responsive">
+	            	<table class="table table-striped table-bordered mb-0">
+					  <thead class="thead-dark ">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Name</th>
+					      <th scope="col">Description</th>
+					      <th scope="col">Created</th>
+					      <th scope="col">Movies</th>
+					      <th scope="col" class="text-right">Actions</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	@if (isset($categories) && count($categories)>0)
+					  	@foreach ($categories as $category)
+					  	<tr>
+					      <th scope="row">
+					      	{{ $category->id }}
+					      </th>
+					      <td> {{ $category->name }} </td>
+					      <td> {{ $category->description }} </td>
+					      <td> {{ $category->created_at }} </td>
+					      <td> {{ count($category->movie) }} </td>
+					      <td class="text-right">
+					      	<div class="btn-group" role="group" aria-label="Button group with nested dropdown"> 
 
-						  <div class="btn-group" role="group">
-						    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						      Actions
-						    </button>
-						    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-						      <a onclick="edit({{ $category->id }},'{{ $category->name }}','{{ $category->description }}')" data-toggle="modal" data-target="#editCategory" class="dropdown-item" href="#">
-						      	Update
-						      </a>
-						      <a onclick="remove({{ $category->id }},this)" class="dropdown-item" >
-						      	Delete
-						      </a>
-						    </div>
-						  </div>
-						</div>
-				      </td>
-				    </tr> 
-				  	@endforeach
-				  	@endif 
-				  </tbody>
-				</table>
-
+							  <div class="btn-group" role="group">
+							    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							      Actions
+							    </button>
+							    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+							      <a onclick="edit({{ $category->id }},'{{ $category->name }}','{{ $category->description }}')" data-toggle="modal" data-target="#editCategory" class="dropdown-item" href="#">
+							      	Update
+							      </a>
+							      <a onclick="remove({{ $category->id }},this)" class="dropdown-item" >
+							      	Delete
+							      </a>
+							    </div>
+							  </div>
+							</div>
+					      </td>
+					    </tr> 
+					  	@endforeach
+					  	@endif 
+					  </tbody>
+					</table>
+				</div>
             </div>
         </div>
     </div>
