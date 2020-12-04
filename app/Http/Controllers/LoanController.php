@@ -48,7 +48,7 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
-        $movie = Movie::create($request->all());
+        $loan = Loan::create($request->all());
 
         return redirect()->back();
     }
